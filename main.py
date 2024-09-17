@@ -16,9 +16,11 @@ class game:
 
     def board_matrix(self):
         matrix = []
+        matrix += [['+'] + ['-'] * (self.width) + ['+']]
         for i in range(self.height):
-            row = [None] * self.width
+            row = ['|'] + [" "] * self.width + ['|']
             matrix.append(row)
+        matrix += [['+'] + ['-'] * (self.width) + ['+']]
         return matrix
 
     
@@ -29,6 +31,22 @@ class game:
                 print(cell, end=' ')
             print()                
 
+class snake:
+    def __init__(self, init_body, init_direction):
+        self.body = init_body
+        self.direction = init_direction
+        pass
+
+    def take_step(self, position):
+        self.body = self.body[1:] + [position]
+        pass
+
+    def set_direction(self, direction):
+        self.direction = direction
+
+    def head(self):
+        return self.body[-1]
 
 
-game(10,10).render()
+
+game(10,20).render()
